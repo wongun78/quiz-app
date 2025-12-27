@@ -99,19 +99,6 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public QuizDetailResponseDTO addQuestion(UUID quizId, UUID questionId) {
-        Quiz quiz = quizRepository.findById(quizId)
-                .orElseThrow(() -> new ResourceNotFoundException("Quiz", "id", quizId));
-        
-        Question question = questionRepository.findById(questionId)
-                .orElseThrow(() -> new ResourceNotFoundException("Question", "id", questionId));
-        
-        addQuestionIfNotExists(quiz, question);
-        
-        return getQuizWithDetails(quizId);
-    }
-
-    @Override
     public QuizDetailResponseDTO addQuestions(UUID quizId, java.util.List<UUID> questionIds) {
         Quiz quiz = quizRepository.findById(quizId)
                 .orElseThrow(() -> new ResourceNotFoundException("Quiz", "id", quizId));

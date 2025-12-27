@@ -37,9 +37,7 @@ public class ExamController {
             - MULTIPLE_CHOICE: Must select ALL correct answers (no partial credit)
             - Pass threshold: 50% of total score
             
-            **Side Effects:**
-            - Saves submission to quiz_submissions table
-            - Returns detailed results with per-question breakdown
+            **Output:** Score, Total Questions, Pass/Fail
             """
     )
     @ApiResponses(value = {

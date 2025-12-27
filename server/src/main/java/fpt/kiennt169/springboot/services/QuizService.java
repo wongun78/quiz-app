@@ -80,19 +80,10 @@ public interface QuizService {
     QuizDetailResponseDTO getWithQuestions(UUID id);
     
     /**
-     * Add a single question to a quiz
+     * Add questions to a quiz
      * 
      * @param quizId the quiz ID
-     * @param questionId the question ID to add
-     * @return updated quiz details with questions
-     */
-    QuizDetailResponseDTO addQuestion(UUID quizId, UUID questionId);
-    
-    /**
-     * Add multiple questions to a quiz
-     * 
-     * @param quizId the quiz ID
-     * @param questionIds list of question IDs to add
+     * @param questionIds list of question IDs to add (can be single or multiple)
      * @return updated quiz details with questions
      */
     QuizDetailResponseDTO addQuestions(UUID quizId, java.util.List<UUID> questionIds);

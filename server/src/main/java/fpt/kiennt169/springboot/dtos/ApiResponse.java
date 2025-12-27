@@ -40,9 +40,6 @@ public class ApiResponse<T> {
     @Schema(description = "Request path", example = "/api/v1/auth/login")
     private String path;
 
-    /**
-     * Creates a successful response with data.
-     */
     public static <T> ApiResponse<T> success(T data) {
         return ApiResponse.<T>builder()
                 .timestamp(LocalDateTime.now())
@@ -52,9 +49,6 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    /**
-     * Creates a successful response with data and custom message.
-     */
     public static <T> ApiResponse<T> success(T data, String message) {
         return ApiResponse.<T>builder()
                 .timestamp(LocalDateTime.now())
@@ -64,9 +58,6 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    /**
-     * Creates a successful response with custom status, data and message.
-     */
     public static <T> ApiResponse<T> success(int status, T data, String message) {
         return ApiResponse.<T>builder()
                 .timestamp(LocalDateTime.now())
@@ -76,9 +67,6 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    /**
-     * Creates an error response.
-     */
     public static <T> ApiResponse<T> error(int status, String message, Object errors, String path) {
         return ApiResponse.<T>builder()
                 .timestamp(LocalDateTime.now())
@@ -89,9 +77,6 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    /**
-     * Creates an error response without error details.
-     */
     public static <T> ApiResponse<T> error(int status, String message, String path) {
         return ApiResponse.<T>builder()
                 .timestamp(LocalDateTime.now())
@@ -101,9 +86,6 @@ public class ApiResponse<T> {
                 .build();
     }
 
-    /**
-     * Creates a created (201) response.
-     */
     public static <T> ApiResponse<T> created(T data, String message) {
         return ApiResponse.<T>builder()
                 .timestamp(LocalDateTime.now())

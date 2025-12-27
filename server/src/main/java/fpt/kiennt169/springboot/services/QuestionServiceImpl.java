@@ -109,10 +109,8 @@ public class QuestionServiceImpl implements QuestionService {
         Question question = questionRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Question", "id", id));
         
-        // Soft delete by setting isDeleted flag
         question.setIsDeleted(true);
         
-        // Also soft delete associated answers
         question.getAnswers().forEach(answer -> answer.setIsDeleted(true));
         
         questionRepository.save(question);

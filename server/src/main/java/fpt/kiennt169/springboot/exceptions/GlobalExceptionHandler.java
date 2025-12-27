@@ -25,9 +25,6 @@ public class GlobalExceptionHandler {
 
     private final MessageUtil messageUtil;
 
-    /**
-     * Handle custom BaseException and its subclasses.
-     */
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<ApiResponse<Void>> handleBaseException(BaseException ex, HttpServletRequest request) {
         log.error("Application exception occurred: {}", ex.getMessage());
@@ -47,10 +44,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, ex.getHttpStatus());
     }
 
-    /**
-     * Handle validation errors (@Valid).
-     * Returns field-level validation errors.
-     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<Void>> handleValidationException(
             MethodArgumentNotValidException ex,
@@ -75,9 +68,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    /**
-     * Handle authentication errors (wrong credentials).
-     */
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ApiResponse<Void>> handleBadCredentialsException(
             BadCredentialsException ex,
@@ -94,9 +84,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
-    /**
-     * Handle authorization errors (insufficient permissions).
-     */
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ApiResponse<Void>> handleAccessDeniedException(
             AccessDeniedException ex,
@@ -113,9 +100,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
     }
 
-    /**
-     * Handle all other unexpected exceptions.
-     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleGlobalException(
             Exception ex,

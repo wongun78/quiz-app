@@ -164,9 +164,6 @@ public class AuthController {
                 .body(ApiResponse.success(null, messageUtil.getMessage("success.auth.logout")));
     }
     
-    /**
-     * Create a secure HttpOnly cookie for refresh token
-     */
     private ResponseCookie createRefreshTokenCookie(String refreshToken) {
         return ResponseCookie
                 .from(REFRESH_TOKEN_COOKIE_NAME, refreshToken)
@@ -178,9 +175,6 @@ public class AuthController {
                 .build();
     }
     
-    /**
-     * Create a cookie to delete the refresh token
-     */
     private ResponseCookie deleteRefreshTokenCookie() {
         return ResponseCookie
                 .from(REFRESH_TOKEN_COOKIE_NAME, "")

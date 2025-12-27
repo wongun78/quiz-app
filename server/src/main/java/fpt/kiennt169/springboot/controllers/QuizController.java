@@ -216,40 +216,8 @@ public class QuizController {
     }
 
     @Operation(
-        summary = "Add single question to quiz",
-        description = "Add one question to a quiz. Question must already exist. Idempotent - won't add duplicates."
-    )
-    @ApiResponses(value = {
-        @io.swagger.v3.oas.annotations.responses.ApiResponse(
-            responseCode = "200",
-            description = "Question added successfully",
-            content = @Content(schema = @Schema(implementation = QuizDetailResponseDTO.class))
-        ),
-        @io.swagger.v3.oas.annotations.responses.ApiResponse(
-            responseCode = "404",
-            description = "Quiz or Question not found",
-            content = @Content(schema = @Schema(implementation = ApiResponse.class))
-        ),
-        @io.swagger.v3.oas.annotations.responses.ApiResponse(
-            responseCode = "403",
-            description = "Access denied - Requires ADMIN role",
-            content = @Content(schema = @Schema(implementation = ApiResponse.class))
-        )
-    })
-    @PostMapping("/{quizId}/questions/{questionId}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<QuizDetailResponseDTO>> addQuestionToQuiz(
-            @Parameter(description = "Quiz ID", required = true)
-            @PathVariable UUID quizId,
-            @Parameter(description = "Question ID", required = true)
-            @PathVariable UUID questionId) {
-        QuizDetailResponseDTO response = quizService.addQuestion(quizId, questionId);
-        return ResponseEntity.ok(ApiResponse.success(response, messageUtil.getMessage("success.quiz.question_added")));
-    }
-
-    @Operation(
-        summary = "Add multiple questions to quiz",
-        description = "Add multiple questions to a quiz in one request. All questions must exist. Skips duplicates."
+        summary = "Add questions to quiz",
+        description = "Add one or multiple questions to quiz. All questions must exist. Skips duplicates."
     )
     @ApiResponses(value = {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(

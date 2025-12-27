@@ -4,6 +4,9 @@ import fpt.kiennt169.springboot.dtos.questions.QuestionRequestDTO;
 import fpt.kiennt169.springboot.dtos.questions.QuestionResponseDTO;
 import fpt.kiennt169.springboot.entities.Question;
 import fpt.kiennt169.springboot.entities.Quiz;
+
+import java.util.stream.Collectors;
+
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", uses = {AnswerMapper.class})
@@ -28,10 +31,9 @@ public interface QuestionMapper {
         if (quizzes == null || quizzes.isEmpty()) {
             return java.util.Collections.emptyList();
         }
-        // Use distinct to remove duplicates from Many-to-Many relationship
         return quizzes.stream()
-            .distinct()  // Remove duplicate quiz objects
+            .distinct()
             .map(quiz -> new QuestionResponseDTO.QuizInfoDTO(quiz.getId(), quiz.getTitle()))
-            .collect(java.util.stream.Collectors.toList());
+            .collect(Collectors.toList());
     }
 }

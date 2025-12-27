@@ -1,8 +1,8 @@
 {
   "info": {
     "_postman_id": "quiz-api-collection-v2",
-    "name": "Quiz Application API v2 (With Auth)",
-    "description": "Complete REST API collection with JWT Authentication - Login, Register, Refresh Token, Logout, Questions, Quizzes, Users, and Exam endpoints",
+    "name": "Quiz API",
+    "description": "REST API with JWT Auth: Login, Questions, Quizzes, Users, Roles, Exam",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "auth": {
@@ -26,16 +26,10 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var jsonData = pm.response.json();",
-                  "    if (jsonData.data && jsonData.data.token) {",
-                  "        pm.collectionVariables.set(\"accessToken\", jsonData.data.token);",
-                  "        console.log(\"✅ Access token saved:\", jsonData.data.token.substring(0, 20) + \"...\");",
-                  "    }",
-                  "    if (jsonData.data && jsonData.data.user && jsonData.data.user.id) {",
-                  "        pm.collectionVariables.set(\"userId\", jsonData.data.user.id);",
-                  "        console.log(\"✅ User ID saved:\", jsonData.data.user.id);",
-                  "    }",
+                  "var data = pm.response.json().data;",
+                  "if (data) {",
+                  "    pm.collectionVariables.set('accessToken', data.token);",
+                  "    pm.collectionVariables.set('userId', data.user.id);",
                   "}"
                 ],
                 "type": "text/javascript"
@@ -61,8 +55,7 @@
               "raw": "{{baseUrl}}/api/v1/auth/login",
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "auth", "login"]
-            },
-            "description": "🔐 Login with email and password\n\n**Credentials:**\n- Admin: admin@quiz.com / Admin@123\n- User: user@quiz.com / User@123\n\n**Response:**\n- Access Token (24h) - in body\n- Refresh Token (7 days) - in HttpOnly cookie\n\n**Auto-saves:**\n- Access token to {{accessToken}}\n- User ID to {{userId}}"
+            }
           },
           "response": []
         },
@@ -73,16 +66,10 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var jsonData = pm.response.json();",
-                  "    if (jsonData.data && jsonData.data.token) {",
-                  "        pm.collectionVariables.set(\"accessToken\", jsonData.data.token);",
-                  "        console.log(\"✅ Access token saved:\", jsonData.data.token.substring(0, 20) + \"...\");",
-                  "    }",
-                  "    if (jsonData.data && jsonData.data.user && jsonData.data.user.id) {",
-                  "        pm.collectionVariables.set(\"userId\", jsonData.data.user.id);",
-                  "        console.log(\"✅ User ID saved:\", jsonData.data.user.id);",
-                  "    }",
+                  "var data = pm.response.json().data;",
+                  "if (data) {",
+                  "    pm.collectionVariables.set('accessToken', data.token);",
+                  "    pm.collectionVariables.set('userId', data.user.id);",
                   "}"
                 ],
                 "type": "text/javascript"
@@ -109,8 +96,7 @@
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "auth", "register"]
             },
-            "description": "📝 Register a new user account\n\n**Response:**\n- Access Token (24h) - in body\n- Refresh Token (7 days) - in HttpOnly cookie\n- User automatically assigned ROLE_USER\n\n**Auto-saves:**\n- Access token to {{accessToken}}\n- User ID to {{userId}}"
-          },
+            "
           "response": []
         },
         {
@@ -120,13 +106,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var jsonData = pm.response.json();",
-                  "    if (jsonData.data && jsonData.data.token) {",
-                  "        pm.collectionVariables.set(\"accessToken\", jsonData.data.token);",
-                  "        console.log(\"✅ New access token saved:\", jsonData.data.token.substring(0, 20) + \"...\");",
-                  "    }",
-                  "}"
+                  "var data = pm.response.json().data;",
+                  "if (data) pm.collectionVariables.set('accessToken', data.token);"
                 ],
                 "type": "text/javascript"
               }
@@ -145,7 +126,6 @@
             },
             "description": "🔄 Refresh access token when expired\n\n**Flow:**\n1. Sends refresh token from HttpOnly cookie (automatic)\n2. Server validates refresh token from DB\n3. Generates NEW access token + NEW refresh token (rotation)\n4. Updates refresh token in DB\n5. Returns new tokens\n\n**Auto-saves:**\n- New access token to {{accessToken}}"
           },
-          "response": []
         },
         {
           "name": "Logout",
@@ -159,8 +139,7 @@
             },
             "description": "🚪 Logout current user\n\n**Actions:**\n- Removes refresh token from database\n- Deletes HttpOnly cookie\n- Client should delete access token\n\n**Requires:**\n- Valid access token in Authorization header"
           },
-          "response": []
-        }
+          "re
       ],
       "description": "Authentication endpoints for user management"
     },
@@ -221,8 +200,7 @@
               "raw": "{{baseUrl}}/api/v1/quizzes",
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "quizzes"]
-            },
-            "description": "🔒 Requires ADMIN role"
+            }
           },
           "response": []
         },
@@ -258,8 +236,7 @@
               "raw": "{{baseUrl}}/api/v1/quizzes/{{quizId}}/details",
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "quizzes", "{{quizId}}", "details"]
-            },
-            "description": "📋 Get quiz details with all questions and answers\n\n**Use this endpoint to:**\n- Display quiz for taking exam\n- Show all questions with answer choices\n- Get complete quiz structure\n\n**Response includes:**\n- Quiz metadata (title, description, duration)\n- All questions with answers\n- Question types and scores"
+            }
           },
           "response": []
         },
@@ -279,8 +256,7 @@
                 "questions",
                 "{{questionId}}"
               ]
-            },
-            "description": "🔒 Requires ADMIN role\n\nAdd an existing question to a quiz"
+            }
           },
           "response": []
         },
@@ -300,8 +276,7 @@
                 "questions",
                 "{{questionId}}"
               ]
-            },
-            "description": "🔒 Requires ADMIN role\n\nRemove a question from a quiz"
+            }
           },
           "response": []
         },
@@ -378,8 +353,7 @@
               "raw": "{{baseUrl}}/api/v1/questions",
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "questions"]
-            },
-            "description": "🔒 Requires ADMIN role"
+            }
           },
           "response": []
         },
@@ -423,6 +397,41 @@
       ]
     },
     {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Get All Roles (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/roles?page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "roles"],
+              "query": [
+                {"key": "page", "value": "0"},
+                {"key": "size", "value": "10"}
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Role by ID (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "roles", "{{roleId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Users",
       "item": [
         {
@@ -444,8 +453,7 @@
                   "value": "10"
                 }
               ]
-            },
-            "description": "🔒 Requires ADMIN role"
+            }
           },
           "response": []
         },
@@ -535,21 +543,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var jsonData = pm.response.json();",
-                  "    if (jsonData.data && jsonData.data.submissionId) {",
-                  "        pm.collectionVariables.set(\"submissionId\", jsonData.data.submissionId);",
-                  "        console.log(\"✅ Submission ID saved:\", jsonData.data.submissionId);",
-                  "    }",
-                  "    if (jsonData.data) {",
-                  "        console.log(\"📊 Exam Result:\");",
-                  "        console.log(\"   Score: \" + jsonData.data.achievedScore + \"/\" + jsonData.data.totalScore);",
-                  "        console.log(\"   Percentage: \" + jsonData.data.percentage.toFixed(2) + \"%\");",
-                  "        console.log(\"   Status: \" + (jsonData.data.passed ? \"✅ PASSED\" : \"❌ FAILED\"));",
-                  "        console.log(\"   Correct: \" + jsonData.data.correctAnswers);",
-                  "        console.log(\"   Wrong: \" + jsonData.data.wrongAnswers);",
-                  "    }",
-                  "}"
+                  "var data = pm.response.json().data;",
+                  "if (data) pm.collectionVariables.set('submissionId', data.submissionId);"
                 ],
                 "type": "text/javascript"
               }
@@ -613,6 +608,11 @@
     },
     {
       "key": "submissionId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "roleId",
       "value": "",
       "type": "string"
     }

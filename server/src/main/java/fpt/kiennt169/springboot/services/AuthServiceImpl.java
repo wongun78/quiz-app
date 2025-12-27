@@ -95,7 +95,6 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setEmail(registerRequest.email());
         user.setPassword(passwordEncoder.encode(registerRequest.password()));
-        // Combine first and last name to create full name
         String fullName = registerRequest.firstName().trim() + " " + registerRequest.lastName().trim();
         user.setFullName(fullName);
         user.setActive(true);

@@ -37,10 +37,6 @@ public record PageResponseDTO<T>(
     @Schema(description = "Whether there is a previous page", example = "false")
     boolean hasPrevious
 ) {
-    
-    /**
-     * Creates a PageResponseDTO from Spring's Page object.
-     */
     public static <T> PageResponseDTO<T> from(Page<T> page) {
         return new PageResponseDTO<>(
                 page.getContent(),

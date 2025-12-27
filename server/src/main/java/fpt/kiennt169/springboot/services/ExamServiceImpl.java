@@ -52,11 +52,8 @@ public class ExamServiceImpl implements ExamService {
             throw new IllegalStateException("Quiz has no questions");
         }
         
-        List<ExamResultResponseDTO.QuestionResultDTO> questionResults = new ArrayList<>();
         double achievedScore = 0.0;
         double totalScore = 0.0;
-        int correctAnswers = 0;
-        int wrongAnswers = 0;
         
         Map<UUID, List<UUID>> submittedAnswersMap = requestDTO.answers().stream()
                 .collect(Collectors.toMap(
@@ -78,53 +75,25 @@ public class ExamServiceImpl implements ExamService {
             
             if (isCorrect) {
                 achievedScore += question.getScore();
-                correctAnswers++;
-            } else {
-                wrongAnswers++;
             }
-            
-            questionResults.add(new ExamResultResponseDTO.QuestionResultDTO(
-                question.getId(),
-                question.getContent(),
-                question.getScore(),
-                isCorrect,
-                submittedAnswerIds,
-                correctAnswerIds
-            ));
         }
         
-        double percentage = (achievedScore / totalScore) * 100.0;
-        boolean passed = percentage >= PASS_PERCENTAGE;
+        boolean passed = (achievedScore / totalScore) * 100.0 >= PASS_PERCENTAGE;
         
-        LocalDateTime submissionTime = LocalDateTime.now();
         QuizSubmission submission = new QuizSubmission();
         submission.setUser(user);
         submission.setQuiz(quiz);
         submission.setScore(achievedScore);
-        submission.setSubmissionTime(submissionTime);
-        
+        submission.setSubmissionTime(LocalDateTime.now());
         submission = quizSubmissionRepository.save(submission);
         
-        log.info("Exam submitted successfully. Score: {}/{} ({}%) - {}", 
-                achievedScore, totalScore, String.format("%.2f", percentage), 
-                passed ? "PASSED" : "FAILED");
+        log.info("Exam submitted. Score: {}/{} - {}", achievedScore, totalScore, passed ? "PASSED" : "FAILED");
         
         return new ExamResultResponseDTO(
             submission.getId(),
-            user.getId(),
-            user.getEmail(),
-            user.getFullName(),
-            quiz.getId(),
-            quiz.getTitle(),
             quizQuestions.size(),
-            correctAnswers,
-            wrongAnswers,
-            totalScore,
             achievedScore,
-            percentage,
-            passed,
-            submissionTime,
-            questionResults
+            passed
         );
     }
     
