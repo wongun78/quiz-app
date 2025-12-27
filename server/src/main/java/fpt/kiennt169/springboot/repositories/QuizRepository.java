@@ -18,8 +18,12 @@ public interface QuizRepository extends JpaRepository<Quiz, UUID>, JpaSpecificat
     
     boolean existsByTitle(String title);
     
-    @EntityGraph(attributePaths = {"questions", "questions.answers"})
+    @EntityGraph(attributePaths = {"questions"})
     Optional<Quiz> findWithDetailsById(UUID id);
+    
+    @EntityGraph(attributePaths = {"questions"})
+    @Override
+    Optional<Quiz> findById(UUID id);
     
     @Override
     Page<Quiz> findAll(Specification<Quiz> spec, Pageable pageable);

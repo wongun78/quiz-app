@@ -63,3 +63,11 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+tasks.withType<JavaCompile>().configureEach {
+	options.compilerArgs.add("-parameters")
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+	jvmArgs("-Dspring.output.ansi.enabled=ALWAYS")
+}

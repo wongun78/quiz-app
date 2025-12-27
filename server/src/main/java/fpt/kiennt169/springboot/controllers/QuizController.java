@@ -149,7 +149,7 @@ public class QuizController {
     @GetMapping("/{id}/details")
     public ResponseEntity<ApiResponse<QuizDetailResponseDTO>> getQuizWithQuestions(
             @Parameter(description = "Quiz ID", required = true)
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         QuizDetailResponseDTO response = quizService.getWithQuestions(id);
         return ResponseEntity.ok(ApiResponse.success(response, messageUtil.getMessage("success.quiz.retrieved.with_questions")));
     }
@@ -179,7 +179,7 @@ public class QuizController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<QuizResponseDTO>> updateQuiz(
             @Parameter(description = "Quiz ID", required = true)
-            @PathVariable UUID id,
+            @PathVariable("id") UUID id,
             @Parameter(description = "Updated quiz details", required = true)
             @Valid @RequestBody QuizRequestDTO requestDTO) {
         QuizResponseDTO response = quizService.update(id, requestDTO);
@@ -210,7 +210,7 @@ public class QuizController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> deleteQuiz(
             @Parameter(description = "Quiz ID", required = true)
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         quizService.delete(id);
         return ResponseEntity.ok(ApiResponse.success(null, messageUtil.getMessage("success.quiz.deleted")));
     }
@@ -240,7 +240,7 @@ public class QuizController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<QuizDetailResponseDTO>> addQuestionsToQuiz(
             @Parameter(description = "Quiz ID", required = true)
-            @PathVariable UUID quizId,
+            @PathVariable("quizId") UUID quizId,
             @Parameter(description = "List of question IDs to add", required = true, example = "[\"uuid1\", \"uuid2\"]")
             @RequestBody java.util.List<UUID> questionIds) {
         QuizDetailResponseDTO response = quizService.addQuestions(quizId, questionIds);
@@ -271,9 +271,9 @@ public class QuizController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> removeQuestionFromQuiz(
             @Parameter(description = "Quiz ID", required = true)
-            @PathVariable UUID quizId,
+            @PathVariable("quizId") UUID quizId,
             @Parameter(description = "Question ID", required = true)
-            @PathVariable UUID questionId) {
+            @PathVariable("questionId") UUID questionId) {
         quizService.removeQuestion(quizId, questionId);
         return ResponseEntity.ok(ApiResponse.success(null, messageUtil.getMessage("success.quiz.question_removed")));
     }

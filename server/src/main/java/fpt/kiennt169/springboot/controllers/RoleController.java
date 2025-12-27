@@ -112,7 +112,7 @@ public class RoleController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<RoleResponseDTO>> getRoleById(
             @Parameter(description = "Role ID", required = true)
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         RoleResponseDTO response = roleService.getById(id);
         return ResponseEntity.ok(ApiResponse.success(response, messageUtil.getMessage("success.role.retrieved")));
     }
@@ -142,7 +142,7 @@ public class RoleController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<RoleResponseDTO>> updateRole(
             @Parameter(description = "Role ID", required = true)
-            @PathVariable UUID id,
+            @PathVariable("id") UUID id,
             @Parameter(description = "Updated role details", required = true)
             @Valid @RequestBody RoleRequestDTO requestDTO) {
         RoleResponseDTO response = roleService.update(id, requestDTO);
@@ -173,7 +173,7 @@ public class RoleController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> deleteRole(
             @Parameter(description = "Role ID", required = true)
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         roleService.delete(id);
         return ResponseEntity.ok(ApiResponse.success(null, messageUtil.getMessage("success.role.deleted")));
     }

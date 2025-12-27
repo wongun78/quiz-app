@@ -230,7 +230,7 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> deleteUser(
             @Parameter(description = "User ID", required = true)
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         userService.delete(id);
         return ResponseEntity.ok(ApiResponse.success(null, messageUtil.getMessage("success.user.deleted")));
     }

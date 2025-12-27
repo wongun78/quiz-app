@@ -9,6 +9,16 @@
       "projectName": "server",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<FR.KS.JAVA.SPRINGBOOT.P.L001-server>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "fpt.kiennt169.springboot.Application",
+      "projectName": "FR.KS.JAVA.SPRINGBOOT.P.L001-server",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

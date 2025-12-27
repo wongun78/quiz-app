@@ -124,7 +124,7 @@ public class QuestionController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<QuestionResponseDTO>> getQuestionById(
             @Parameter(description = "Question ID", required = true, example = "123e4567-e89b-12d3-a456-426614174000")
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         QuestionResponseDTO response = questionService.getById(id);
         return ResponseEntity.ok(ApiResponse.success(response, messageUtil.getMessage("success.question.retrieved")));
     }
@@ -154,7 +154,7 @@ public class QuestionController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<QuestionResponseDTO>> updateQuestion(
             @Parameter(description = "Question ID", required = true)
-            @PathVariable UUID id,
+            @PathVariable("id") UUID id,
             @Parameter(description = "Updated question details", required = true)
             @Valid @RequestBody QuestionRequestDTO requestDTO) {
         QuestionResponseDTO response = questionService.update(id, requestDTO);
@@ -185,7 +185,7 @@ public class QuestionController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> deleteQuestion(
             @Parameter(description = "Question ID", required = true)
-            @PathVariable UUID id) {
+            @PathVariable("id") UUID id) {
         questionService.delete(id);
         return ResponseEntity.ok(ApiResponse.success(null, messageUtil.getMessage("success.question.deleted")));
     }

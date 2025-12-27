@@ -95,8 +95,8 @@
               "raw": "{{baseUrl}}/api/v1/auth/register",
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "auth", "register"]
-            },
-            "
+            }
+          },
           "response": []
         },
         {
@@ -126,6 +126,7 @@
             },
             "description": "🔄 Refresh access token when expired\n\n**Flow:**\n1. Sends refresh token from HttpOnly cookie (automatic)\n2. Server validates refresh token from DB\n3. Generates NEW access token + NEW refresh token (rotation)\n4. Updates refresh token in DB\n5. Returns new tokens\n\n**Auto-saves:**\n- New access token to {{accessToken}}"
           },
+          "response": []
         },
         {
           "name": "Logout",
@@ -139,7 +140,8 @@
             },
             "description": "🚪 Logout current user\n\n**Actions:**\n- Removes refresh token from database\n- Deletes HttpOnly cookie\n- Client should delete access token\n\n**Requires:**\n- Valid access token in Authorization header"
           },
-          "re
+          "response": []
+        }
       ],
       "description": "Authentication endpoints for user management"
     },
@@ -241,21 +243,23 @@
           "response": []
         },
         {
-          "name": "Add Question to Quiz (Admin)",
+          "name": "Add Questions to Quiz (Admin)",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\"{{questionId}}\"]"
+            },
             "url": {
-              "raw": "{{baseUrl}}/api/v1/quizzes/{{quizId}}/questions/{{questionId}}",
+              "raw": "{{baseUrl}}/api/v1/quizzes/{{quizId}}/questions",
               "host": ["{{baseUrl}}"],
-              "path": [
-                "api",
-                "v1",
-                "quizzes",
-                "{{quizId}}",
-                "questions",
-                "{{questionId}}"
-              ]
+              "path": ["api", "v1", "quizzes", "{{quizId}}", "questions"]
             }
           },
           "response": []
@@ -400,6 +404,35 @@
       "name": "Roles",
       "item": [
         {
+          "name": "Create Role (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var data = pm.response.json().data;",
+                  "if (data) pm.collectionVariables.set('roleId', data.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ROLE_USER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/roles",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "roles"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Get All Roles (Admin)",
           "request": {
             "method": "GET",
@@ -409,8 +442,8 @@
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "roles"],
               "query": [
-                {"key": "page", "value": "0"},
-                {"key": "size", "value": "10"}
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "10" }
               ]
             }
           },
@@ -420,6 +453,36 @@
           "name": "Get Role by ID (Admin)",
           "request": {
             "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "roles", "{{roleId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Role (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ROLE_ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "roles", "{{roleId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Role (Admin)",
+          "request": {
+            "method": "DELETE",
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
