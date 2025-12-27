@@ -8,26 +8,22 @@ import java.lang.annotation.Target;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Documented
-@Constraint(validatedBy = StrongPasswordValidator.class)
+@Constraint(validatedBy = {}) 
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
+@NotBlank(message = "{validation.password.notblank}")
+@Size(min = 8, message = "{validation.password.size}")
+@Pattern(regexp = ".*[A-Z].*", message = "{validation.password.uppercase}")
+@Pattern(regexp = ".*[a-z].*", message = "{validation.password.lowercase}")
+@Pattern(regexp = ".*\\d.*", message = "{validation.password.digit}")
+@Pattern(regexp = ".*[!@#$%^&*()_+].*", message = "{validation.password.special}")
 public @interface StrongPassword {
-    
-    String message() default "Password must be at least 8 characters and contain uppercase, lowercase, digit, and special character";
-    
+    String message() default "{validation.password.strong}";
     Class<?>[] groups() default {};
-    
     Class<? extends Payload>[] payload() default {};
-    
-    int minLength() default 8;
-    
-    boolean requireUppercase() default true;
-    
-    boolean requireLowercase() default true;
-    
-    boolean requireDigit() default true;
-    
-    boolean requireSpecialChar() default true;
 }

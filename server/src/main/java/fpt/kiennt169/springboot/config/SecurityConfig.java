@@ -103,6 +103,17 @@ public class SecurityConfig {
                     .csrf(csrf -> csrf.disable())
                     .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .exceptionHandling(exception -> exception
+                            .authenticationEntryPoint((request, response, authException) -> {
+                                // Return 401 for authentication failures
+                                response.sendError(jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED, 
+                                    "Unauthorized: Authentication token was either missing or invalid");
+                            })
+                            .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                // Return 403 for authorization failures
+                                response.sendError(jakarta.servlet.http.HttpServletResponse.SC_FORBIDDEN, 
+                                    "Forbidden: You don't have permission to access this resource");
+                            }))
                     .authenticationProvider(authenticationProvider())
                     .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeHttpRequests(auth -> auth

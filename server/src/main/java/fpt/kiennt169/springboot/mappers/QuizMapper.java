@@ -19,7 +19,7 @@ public interface QuizMapper {
     @Mapping(target = "submissions", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
+    @Mapping(target = "isDeleted", ignore = true)
     Quiz toEntity(QuizRequestDTO requestDTO);
     
     @InheritConfiguration(name = "toEntity")

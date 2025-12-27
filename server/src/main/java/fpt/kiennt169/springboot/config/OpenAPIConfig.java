@@ -45,8 +45,8 @@ public class OpenAPIConfig {
                                 .name("KienNT169")
                                 .email("kiennt169@fpt.com"))
                         .license(new License()
-                                .name("Educational Project")
-                                .url("https://github.com/wongun78/FR.KS.JAVA.SPRINGBOOT.P.L001")))
+                                .name(" Quiz Application Project")
+                                .url("https://github.com/wongun78/quiz-app")))
                 .servers(List.of(
                         new Server().url("http://localhost:8080").description("Local Development")
                 ))

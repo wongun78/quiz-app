@@ -10,9 +10,11 @@ import fpt.kiennt169.springboot.exceptions.ResourceNotFoundException;
 import fpt.kiennt169.springboot.mappers.UserMapper;
 import fpt.kiennt169.springboot.repositories.RoleRepository;
 import fpt.kiennt169.springboot.repositories.UserRepository;
+import fpt.kiennt169.springboot.specifications.UserSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,17 +63,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public PageResponseDTO<UserResponseDTO> searchWithPaging(String fullName, Boolean active, Pageable pageable) {
-        Page<User> userPage;
+        Specification<User> spec = Specification
+                .where(UserSpecification.hasFullName(fullName))
+                .and(UserSpecification.isActive(active));
         
-        if (fullName != null && active != null) {
-            userPage = userRepository.findByFullNameContainingIgnoreCaseAndActive(fullName, active, pageable);
-        } else if (fullName != null) {
-            userPage = userRepository.findByFullNameContainingIgnoreCase(fullName, pageable);
-        } else if (active != null) {
-            userPage = userRepository.findByActive(active, pageable);
-        } else {
-            userPage = userRepository.findAll(pageable);
-        }
+        Page<User> userPage = userRepository.findAll(spec, pageable);
         
         Page<UserResponseDTO> responsePage = userPage.map(userMapper::toResponseDTO);
         return PageResponseDTO.from(responsePage);

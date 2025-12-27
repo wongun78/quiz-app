@@ -18,8 +18,8 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@SQLDelete(sql = "UPDATE {h-domain} SET deleted = true WHERE id = ?")
-@SQLRestriction("deleted = false")
+@SQLDelete(sql = "UPDATE {h-domain} SET is_deleted = true WHERE id = ?")
+@SQLRestriction("is_deleted = false")
 public abstract class BaseEntity {
     
     @CreatedDate
@@ -30,6 +30,6 @@ public abstract class BaseEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
     
-    @Column(name = "deleted", nullable = false)
-    private Boolean deleted = false;
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
 }

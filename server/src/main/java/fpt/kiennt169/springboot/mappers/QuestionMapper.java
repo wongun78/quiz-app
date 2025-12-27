@@ -17,7 +17,7 @@ public interface QuestionMapper {
     @Mapping(target = "answers", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
+    @Mapping(target = "isDeleted", ignore = true)
     Question toEntity(QuestionRequestDTO requestDTO);
 
     @Mapping(target = "quizzes", ignore = true)
@@ -28,7 +28,9 @@ public interface QuestionMapper {
         if (quizzes == null || quizzes.isEmpty()) {
             return java.util.Collections.emptyList();
         }
+        // Use distinct to remove duplicates from Many-to-Many relationship
         return quizzes.stream()
+            .distinct()  // Remove duplicate quiz objects
             .map(quiz -> new QuestionResponseDTO.QuizInfoDTO(quiz.getId(), quiz.getTitle()))
             .collect(java.util.stream.Collectors.toList());
     }

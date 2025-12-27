@@ -55,14 +55,14 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"admin@quiz.com\",\n  \"password\": \"admin123\"\n}"
+              "raw": "{\n  \"email\": \"admin@quiz.com\",\n  \"password\": \"Admin@123\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v1/auth/login",
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "auth", "login"]
             },
-            "description": "🔐 Login with email and password\n\n**Credentials:**\n- Admin: admin@quiz.com / admin123\n- User: user@quiz.com / user123\n\n**Response:**\n- Access Token (24h) - in body\n- Refresh Token (7 days) - in HttpOnly cookie\n\n**Auto-saves:**\n- Access token to {{accessToken}}\n- User ID to {{userId}}"
+            "description": "🔐 Login with email and password\n\n**Credentials:**\n- Admin: admin@quiz.com / Admin@123\n- User: user@quiz.com / User@123\n\n**Response:**\n- Access Token (24h) - in body\n- Refresh Token (7 days) - in HttpOnly cookie\n\n**Auto-saves:**\n- Access token to {{accessToken}}\n- User ID to {{userId}}"
           },
           "response": []
         },
@@ -102,7 +102,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"fullName\": \"Test User\"\n}"
+              "raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"Test@123\",\n  \"confirmPassword\": \"Test@123\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v1/auth/register",
@@ -475,7 +475,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"newadmin@quiz.com\",\n  \"password\": \"admin123\",\n  \"fullName\": \"New Admin\",\n  \"active\": true,\n  \"roleIds\": []\n}"
+              "raw": "{\n  \"email\": \"newadmin@quiz.com\",\n  \"password\": \"Admin@123\",\n  \"fullName\": \"New Admin\",\n  \"active\": true,\n  \"roleIds\": []\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v1/users",
@@ -498,7 +498,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"updated@quiz.com\",\n  \"password\": \"newpass123\",\n  \"fullName\": \"Updated Name\",\n  \"active\": true,\n  \"roleIds\": []\n}"
+              "raw": "{\n  \"email\": \"updated@quiz.com\",\n  \"password\": \"NewPass@123\",\n  \"fullName\": \"Updated Name\",\n  \"active\": true,\n  \"roleIds\": []\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/v1/users/{{userId}}",

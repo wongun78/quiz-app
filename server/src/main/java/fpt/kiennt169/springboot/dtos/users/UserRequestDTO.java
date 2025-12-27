@@ -1,5 +1,6 @@
 package fpt.kiennt169.springboot.dtos.users;
 
+import fpt.kiennt169.springboot.validation.StrongPassword;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import java.util.Set;
@@ -13,9 +14,10 @@ public record UserRequestDTO(
     @Email(message = "{validation.email.invalid}")
     String email,
     
-    @Schema(description = "User password (min 8 characters)", example = "SecureP@ss123", minLength = 8)
-    @NotBlank(message = "{validation.password.notblank}")
-    @Size(min = 8, message = "{validation.password.size}")
+    @Schema(description = "Strong password (min 8 chars, uppercase, lowercase, digit, special char)", 
+            example = "SecureP@ss123", 
+            minLength = 8)
+    @StrongPassword
     String password,
     
     @Schema(description = "User full name", example = "Nguyen Van A", maxLength = 100)

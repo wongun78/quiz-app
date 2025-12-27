@@ -88,10 +88,16 @@ public class AuthServiceImpl implements AuthService {
             throw new ResourceAlreadyExistsException("Email already registered: " + registerRequest.email());
         }
 
+        if (!registerRequest.password().equals(registerRequest.confirmPassword())) {
+            throw new BadCredentialsException("Password confirmation does not match");
+        }
+
         User user = new User();
         user.setEmail(registerRequest.email());
         user.setPassword(passwordEncoder.encode(registerRequest.password()));
-        user.setFullName(registerRequest.fullName());
+        // Combine first and last name to create full name
+        String fullName = registerRequest.firstName().trim() + " " + registerRequest.lastName().trim();
+        user.setFullName(fullName);
         user.setActive(true);
 
         Role userRole = roleRepository.findByName(RoleEnum.ROLE_USER)

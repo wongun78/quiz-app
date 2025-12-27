@@ -10,9 +10,11 @@ import fpt.kiennt169.springboot.mappers.AnswerMapper;
 import fpt.kiennt169.springboot.mappers.QuestionMapper;
 import fpt.kiennt169.springboot.repositories.AnswerRepository;
 import fpt.kiennt169.springboot.repositories.QuestionRepository;
+import fpt.kiennt169.springboot.specifications.QuestionSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,17 +59,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     @Transactional(readOnly = true)
     public PageResponseDTO<QuestionResponseDTO> searchWithPaging(String content, fpt.kiennt169.springboot.enums.QuestionTypeEnum type, Pageable pageable) {
-        Page<Question> questionPage;
+        Specification<Question> spec = Specification
+                .where(QuestionSpecification.hasContent(content))
+                .and(QuestionSpecification.hasType(type));
         
-        if (content != null && type != null) {
-            questionPage = questionRepository.findByContentContainingIgnoreCaseAndType(content, type, pageable);
-        } else if (content != null) {
-            questionPage = questionRepository.findByContentContainingIgnoreCase(content, pageable);
-        } else if (type != null) {
-            questionPage = questionRepository.findByType(type, pageable);
-        } else {
-            questionPage = questionRepository.findAll(pageable);
-        }
+        Page<Question> questionPage = questionRepository.findAll(spec, pageable);
         
         Page<QuestionResponseDTO> responsePage = questionPage.map(questionMapper::toResponseDTO);
         return PageResponseDTO.from(responsePage);
@@ -110,9 +106,15 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void delete(UUID id) {
-        if (!questionRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Question", "id", id);
-        }
-        questionRepository.deleteById(id);
+        Question question = questionRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Question", "id", id));
+        
+        // Soft delete by setting isDeleted flag
+        question.setIsDeleted(true);
+        
+        // Also soft delete associated answers
+        question.getAnswers().forEach(answer -> answer.setIsDeleted(true));
+        
+        questionRepository.save(question);
     }
 }

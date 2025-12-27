@@ -15,6 +15,6 @@ public interface AnswerMapper {
     @Mapping(target = "question", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
+    @Mapping(target = "isDeleted", ignore = true)
     Answer toEntity(AnswerRequestDTO requestDTO);
 }

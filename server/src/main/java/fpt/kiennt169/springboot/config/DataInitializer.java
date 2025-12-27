@@ -82,7 +82,7 @@ public class DataInitializer {
             // Admin user
             User admin = new User();
             admin.setEmail("admin@quiz.com");
-            admin.setPassword(passwordEncoder.encode("admin123"));
+            admin.setPassword(passwordEncoder.encode("Admin@123"));
             admin.setFullName("Admin User");
             admin.setActive(true);
             admin.setRefreshToken(null); // Will be set on login
@@ -93,7 +93,7 @@ public class DataInitializer {
             // Regular user
             User user = new User();
             user.setEmail("user@quiz.com");
-            user.setPassword(passwordEncoder.encode("user123"));
+            user.setPassword(passwordEncoder.encode("User@123"));
             user.setFullName("Test User");
             user.setActive(true);
             user.setRefreshToken(null); // Will be set on login
@@ -250,9 +250,11 @@ public class DataInitializer {
         question.setContent(content);
         question.setType(type);
         question.setScore(score);
+        
+        // Save question first
         question = questionRepository.save(question);
         
-        // Add question to quiz (Many-to-Many relationship)
+        // Then add to quiz (Quiz is the owner of the relationship)
         quiz.getQuestions().add(question);
         quizRepository.save(quiz);
         

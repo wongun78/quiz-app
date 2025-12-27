@@ -11,9 +11,11 @@ import fpt.kiennt169.springboot.exceptions.ResourceNotFoundException;
 import fpt.kiennt169.springboot.mappers.QuizMapper;
 import fpt.kiennt169.springboot.repositories.QuestionRepository;
 import fpt.kiennt169.springboot.repositories.QuizRepository;
+import fpt.kiennt169.springboot.specifications.QuizSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,17 +53,11 @@ public class QuizServiceImpl implements QuizService {
     @Override
     @Transactional(readOnly = true)
     public PageResponseDTO<QuizResponseDTO> searchWithPaging(String title, Boolean active, Pageable pageable) {
-        Page<Quiz> quizPage;
+        Specification<Quiz> spec = Specification
+                .where(QuizSpecification.hasTitle(title))
+                .and(QuizSpecification.isActive(active));
         
-        if (title != null && active != null) {
-            quizPage = quizRepository.findByTitleContainingIgnoreCaseAndActive(title, active, pageable);
-        } else if (title != null) {
-            quizPage = quizRepository.findByTitleContainingIgnoreCase(title, pageable);
-        } else if (active != null) {
-            quizPage = quizRepository.findByActive(active, pageable);
-        } else {
-            quizPage = quizRepository.findAll(pageable);
-        }
+        Page<Quiz> quizPage = quizRepository.findAll(spec, pageable);
         
         Page<QuizResponseDTO> responsePage = quizPage.map(quizMapper::toResponseDTO);
         return PageResponseDTO.from(responsePage);

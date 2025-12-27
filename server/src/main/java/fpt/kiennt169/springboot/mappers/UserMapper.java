@@ -22,7 +22,7 @@ public interface UserMapper {
     @Mapping(target = "submissions", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
+    @Mapping(target = "isDeleted", ignore = true)
     User toEntity(UserRequestDTO requestDTO);
 
     @InheritConfiguration(name = "toEntity")
