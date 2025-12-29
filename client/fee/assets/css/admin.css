@@ -1,0 +1,675 @@
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--secondary);
+}
+
+.admin-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 16rem;
+  background-color: var(--card);
+  border-right: 1px solid var(--border);
+  display: none;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+.sidebar-nav {
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: var(--transition-colors);
+  color: var(--muted-foreground);
+}
+
+.sidebar-link:hover {
+  background-color: var(--secondary);
+  color: var(--foreground);
+}
+
+.sidebar-link.active {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.sidebar-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: var(--foreground);
+  transition: var(--transition-colors);
+  cursor: pointer;
+  border: none;
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--secondary);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.page-container {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.page-description {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.management-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: visible;
+}
+
+.card-header {
+  position: relative;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-header::after {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  right: -1rem;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--border);
+  z-index: 1;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--card-foreground);
+}
+
+.search-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-filter > * {
+  flex: 1 1 100%;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.filter-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.filter-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: var(--transition-colors);
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.1);
+}
+
+.filter-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table thead {
+  background-color: var(--muted);
+}
+
+.data-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+/* Rotating/alternating row colors for visual distinction */
+.data-table tbody tr:nth-child(odd) {
+  background-color: var(--list-1);
+  color: var(--list-text-contrast);
+}
+.data-table tbody tr:nth-child(even) {
+  background-color: var(--list-2);
+  color: var(--list-text-contrast);
+}
+
+/* Keep hover state clear and slightly darker */
+.data-table tbody tr:hover {
+  background-color: var(--muted);
+  filter: brightness(0.96);
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: var(--radius);
+  transition: var(--transition-colors);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.btn-icon:hover {
+  background-color: var(--secondary);
+}
+
+.btn-edit {
+  color: #3b82f6;
+}
+
+.btn-delete {
+  color: #ef4444;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.pagination-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pagination-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.pagination-per-page label {
+  font-weight: 500;
+}
+
+.pagination-select {
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+.pagination-select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.pagination-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  transition: var(--transition-colors), box-shadow 160ms ease;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--secondary);
+  transform: translateY(-1px);
+}
+
+.pagination-btn.active {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Focus styles — visible and accessible */
+.pagination-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(56, 182, 255, 0.12);
+}
+
+/* Make numeric page buttons slightly smaller and icon-friendly */
+.pagination-btn.size-sm {
+  height: 2rem;
+  min-width: 2.25rem;
+  padding: 0 0.4rem;
+}
+
+/* Prev/Next labels: keep text but allow icons to sit nicely */
+.pagination-btn svg {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* hide textual labels inside pagination buttons to show icons-only */
+.pagination-label {
+  display: none;
+}
+
+/* Slightly larger spacing for first/last buttons */
+.pagination-btn.first,
+.pagination-btn.last {
+  min-width: 2.5rem;
+  height: 2.5rem;
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .pagination-top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pagination-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .pagination-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pagination-top,
+  .pagination-bottom {
+    flex-direction: row;
+  }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+}
+
+.status-active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-inactive {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.form-row > * {
+  flex: 1 1 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: var(--transition-colors);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.1);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: var(--transition-colors);
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.1);
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: var(--transition-colors);
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(56, 182, 255, 0.1);
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-input {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.checkbox-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.card-footer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1rem;
+  right: -1rem;
+  height: 1px;
+  background-color: var(--border);
+  pointer-events: none;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-toggle {
+    display: none;
+  }
+
+  .search-filter > * {
+    flex: 1 1 calc(33.333% - 0.67rem);
+  }
+
+  .form-row > * {
+    flex: 1 1 calc(50% - 0.75rem);
+  }
+
+  .page-container {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-filter > * {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+}
+
+/* Utility classes */
+.flex-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.flex-row-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.overflow-auto {
+  overflow-x: auto;
+}
+
+.image-cell {
+  width: 80px;
+  overflow: hidden;
+}
+
+.image-cell img {
+  width: 100%;
+  display: block;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.form-textarea-large {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.card-footer-space-between {
+  justify-content: space-between;
+}
+
+.padding-top-2 {
+  padding-top: 2rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.contact-detail-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+.about-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+.about-logo img {
+  height: 2rem;
+  width: 2rem;
+}

@@ -1,0 +1,54 @@
+2025-12-26 22:13:40.511 [restartedMain] INFO  f.kiennt169.springboot.Application - Starting Application using Java 21.0.9 with PID 74529 (/Users/wongun78/Vault/cong2008/quiz-app/server/build/classes/java/main started by wongun78 in /Users/wongun78/Vault/cong2008/quiz-app)
+2025-12-26 22:13:40.512 [restartedMain] DEBUG f.kiennt169.springboot.Application - Running with Spring Boot v4.0.0, Spring v7.0.1
+2025-12-26 22:13:40.512 [restartedMain] INFO  f.kiennt169.springboot.Application - The following 1 profile is active: "dev"
+2025-12-26 22:13:40.550 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-26 22:13:40.553 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-26 22:13:40.723 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2025-12-26 22:13:41.117 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-26 22:13:41.150 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 6 JPA repository interfaces.
+2025-12-26 22:13:41.503 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-12-26 22:13:41.513 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-26 22:13:41.514 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-26 22:13:41.514 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-26 22:13:41.534 [restartedMain] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 979 ms
+2025-12-26 22:13:41.630 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-26 22:13:41.650 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 7.1.8.Final
+2025-12-26 22:13:41.823 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-26 22:13:41.841 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-26 22:13:41.919 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9bdf1fb
+2025-12-26 22:13:41.920 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-26 22:13:41.950 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/quiz_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 16.11
+	Default catalog/schema: quiz_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DatasourceConnectionProviderImpl
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-26 22:13:42.350 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-26 22:13:42.432 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26 22:13:42.463 [restartedMain] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-26 22:13:42.562 [restartedMain] DEBUG f.k.springboot.config.JWTFilter - Filter 'jwtFilter' configured for use
+2025-12-26 22:13:42.956 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-26 22:13:43.309 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-12-26 22:13:43.340 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-26 22:13:43.345 [restartedMain] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-12-26 22:13:43.352 [restartedMain] INFO  f.kiennt169.springboot.Application - Started Application in 3.038 seconds (process running for 3.361)
+2025-12-26 22:13:43.381 [restartedMain] DEBUG org.hibernate.SQL - select count(*) from roles r1_0 where (r1_0.deleted = false)
+2025-12-26 22:13:43.390 [restartedMain] DEBUG org.hibernate.SQL - select count(*) from users u1_0 where (u1_0.deleted = false)
+2025-12-26 22:13:43.445 [restartedMain] DEBUG org.hibernate.SQL - select q1_0.id from quizzes q1_0 where (q1_0.deleted = false) and q1_0.title=? fetch first ? rows only
+2025-12-26 22:13:43.450 [restartedMain] DEBUG org.hibernate.SQL - select q1_0.id from quizzes q1_0 where (q1_0.deleted = false) and q1_0.title=? fetch first ? rows only
+2025-12-26 22:13:43.452 [restartedMain] DEBUG org.hibernate.SQL - select q1_0.id from quizzes q1_0 where (q1_0.deleted = false) and q1_0.title=? fetch first ? rows only
+2025-12-26 22:13:43.453 [restartedMain] DEBUG org.hibernate.SQL - select q1_0.id from quizzes q1_0 where (q1_0.deleted = false) and q1_0.title=? fetch first ? rows only
+2025-12-26 22:13:43.454 [restartedMain] INFO  f.k.s.config.DataInitializer - Database initialization completed!
+2025-12-26 22:13:43.455 [restartedMain] WARN  o.s.c.events.SpringDocAppInitializer - SpringDoc /api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2025-12-26 22:13:43.455 [restartedMain] WARN  o.s.c.events.SpringDocAppInitializer - SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2025-12-26 22:18:45.405 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-26 22:18:45.410 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-12-26 22:18:45.420 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-26 22:18:45.423 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-12-26 22:18:45.425 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Quiz App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-primary: #38b6ff;
+      }
+
+      .bg-primary {
+        background-color: #38b6ff;
+      }
+
+      .text-muted-foreground {
+        color: #64748b;
+      }
+
+      .border-input {
+        border-color: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex min-h-screen flex-col bg-primary justify-center">
+      <div class="mx-auto w-full max-w-md">
+        <div class="overflow-hidden rounded-xl bg-white border shadow-sm">
+          <div class="p-6">
+            <div class="text-center text-2xl font-semibold">Register</div>
+          </div>
+
+          <div class="px-6 pb-6">
+            <form id="registerForm" class="space-y-4">
+              <div class="flex flex-row gap-2">
+                <div class="space-y-1 flex-1">
+                  <label
+                    for="firstName"
+                    class="flex items-center gap-2 text-sm font-medium"
+                  >
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    placeholder="Enter your first name"
+                  />
+                </div>
+
+                <div class="space-y-1 flex-1">
+                  <label
+                    for="lastName"
+                    class="flex items-center gap-2 text-sm font-medium"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    placeholder="Enter your last name"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <label
+                  for="email"
+                  class="flex items-center gap-2 text-sm font-medium"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div class="flex flex-row gap-2">
+                <div class="space-y-1 flex-1">
+                  <label
+                    for="username"
+                    class="flex items-center gap-2 text-sm font-medium"
+                  >
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    id="username"
+                    class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    placeholder="Enter your username"
+                  />
+                </div>
+
+                <div class="space-y-1 flex-1">
+                  <label
+                    for="phone"
+                    class="flex items-center gap-2 text-sm font-medium"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    placeholder="Enter your phone"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <label
+                  for="password"
+                  class="flex items-center gap-2 text-sm font-medium"
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="Enter your password"
+                />
+              </div>
+
+              <div class="space-y-1">
+                <label
+                  for="confirmPassword"
+                  class="flex items-center gap-2 text-sm font-medium"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-shadow outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  placeholder="Confirm your password"
+                />
+              </div>
+
+              <div class="flex flex-row gap-2 w-full">
+                <a
+                  href="home.html"
+                  class="flex-1 inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 border border-gray-200 bg-white shadow-sm hover:bg-gray-50 transition-all text-center"
+                >
+                  Back to Home
+                </a>
+                <button
+                  type="submit"
+                  class="flex-1 inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md text-sm font-medium h-9 px-4 py-2 bg-primary text-white hover:opacity-90 transition-all"
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+
+            <p class="mt-6 text-center text-sm">
+              <span class="text-muted-foreground"
+                >Already have an account?
+              </span>
+              <a
+                href="login.html"
+                class="font-semibold text-muted-foreground hover:underline"
+              >
+                Login
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
