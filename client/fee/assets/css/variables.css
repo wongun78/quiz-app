@@ -1,0 +1,41 @@
+:root {
+  --radius: 0.625rem;
+  --radius-lg: var(--radius);
+
+  --background: #ffffff;
+  --foreground: #1e293b;
+  --card: #ffffff;
+  --card-foreground: #1e293b;
+
+  --primary: #38b6ff;
+  --primary-foreground: #ffffff;
+  --primary-hover: #2196e8;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #334155;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #38b6ff;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --container-padding: 1rem;
+  --section-padding-y: 3rem;
+  /* Height used for top navbar so sticky elements can reference it */
+  --navbar-height: 4rem;
+
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --transition-colors: color 150ms ease-in-out,
+    background-color 150ms ease-in-out, border-color 150ms ease-in-out;
+  /* List / row color accents for varied list colouring */
+  /* Two-tone: white / light gray for alternating rows */
+  --list-1: #ffffff; /* white */
+  --list-2: #f3f4f6; /* gray-100 */
+  --list-text-contrast: var(--foreground);
+}

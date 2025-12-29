@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <header class="navbar">
+        <div class="container-custom navbar-container">
+          <a href="home.html" class="navbar-logo">
+            <img src="assets/icons/logo.png" alt="Quiz Logo" />
+            <span>Quizzes</span>
+          </a>
+
+          <nav class="navbar-nav">
+            <a href="home.html" class="navbar-link">Home</a>
+            <a href="quizzes.html" class="navbar-link">Quizzes</a>
+            <a href="role-management.html" class="navbar-link active"
+              >Management</a
+            >
+            <a href="about.html" class="navbar-link">About</a>
+            <a href="contact.html" class="navbar-link">Contact</a>
+          </nav>
+
+          <div class="navbar-actions">
+            <div class="user-dropdown" data-auth-ui>
+              <button
+                class="user-avatar-btn"
+                id="userAvatarBtn"
+                aria-label="User menu"
+              >
+                <img
+                  src="assets/images/teams/team-1.png"
+                  alt="User Avatar"
+                  class="user-avatar-icon"
+                />
+              </button>
+              <div class="user-dropdown-menu" id="userDropdownMenu">
+                <div class="dropdown-header">
+                  <p class="dropdown-name">Kien Trung</p>
+                </div>
+                <div class="dropdown-divider"></div>
+
+                <a href="#" class="dropdown-item">Change Password</a>
+                <div class="dropdown-divider"></div>
+                <a href="login.html" class="dropdown-item">Logout</a>
+              </div>
+            </div>
+
+            <div class="auth-buttons" data-guest-ui>
+              <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+              <a href="register.html" class="btn btn-primary btn-sm"
+                >Register</a
+              >
+            </div>
+
+            <button
+              class="navbar-mobile-toggle"
+              id="mobileMenuToggle"
+              aria-label="Toggle menu"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <nav class="mobile-menu-nav">
+            <a href="home.html" class="mobile-menu-link">Home</a>
+            <a href="quizzes.html" class="mobile-menu-link">Quizzes</a>
+            <a href="role-management.html" class="mobile-menu-link active"
+              >Management</a
+            >
+            <a href="about.html" class="mobile-menu-link">About</a>
+            <a href="contact.html" class="mobile-menu-link">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="admin-content">
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <span class="sidebar-title">Menu</span>
+          </div>
+
+          <nav class="sidebar-nav">
+            <a href="quiz-management.html" class="sidebar-link">
+              <svg
+                class="sidebar-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+              Quiz Management
+            </a>
+
+            <a href="question-management.html" class="sidebar-link">
+              <svg
+                class="sidebar-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+              Question Management
+            </a>
+
+            <a href="user-management.html" class="sidebar-link">
+              <svg
+                class="sidebar-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+              User Management
+            </a>
+
+            <a href="role-management.html" class="sidebar-link active">
+              <svg
+                class="sidebar-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
+              </svg>
+              Role Management
+            </a>
+          </nav>
+        </aside>
+
+        <div class="main-content">
+          <main class="page-container">
+            <div class="management-card">
+              <div class="card-header">
+                <h2 class="card-title">Role Management</h2>
+              </div>
+
+              <div class="search-filter">
+                <div class="filter-group">
+                  <label class="filter-label">Name</label>
+                  <input
+                    type="text"
+                    class="filter-input"
+                    placeholder="Enter role name to search"
+                  />
+                </div>
+
+                <div class="filter-group">
+                  <label class="filter-label">Type</label>
+                  <div class="checkbox-wrapper">
+                    <input
+                      type="checkbox"
+                      id="status-filter"
+                      class="checkbox-input"
+                    />
+                    <label for="status-filter" class="checkbox-label"
+                      >Active</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-actions">
+                <button class="btn btn-primary btn-sm">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 5v14m7-7H5" />
+                  </svg>
+                  Create
+                </button>
+                <div style="display: flex; gap: 0.5rem; margin-left: auto">
+                  <button class="btn btn-outline btn-sm">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      />
+                    </svg>
+                    Clear
+                  </button>
+                  <button class="btn btn-primary btn-sm">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="management-card">
+              <div class="card-header">
+                <h2 class="card-title">Role List</h2>
+              </div>
+
+              <div class="overflow-auto">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Admin</td>
+                      <td>Full Access</td>
+                      <td>
+                        <span class="status-badge status-active">Active</span>
+                      </td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="btn-icon btn-edit" title="Edit">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
+                              />
+                              <path
+                                d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+                              />
+                            </svg>
+                          </button>
+                          <button class="btn-icon btn-delete" title="Delete">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Editor</td>
+                      <td>Editable</td>
+                      <td>
+                        <span class="status-badge status-active">Active</span>
+                      </td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="btn-icon btn-edit" title="Edit">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
+                              />
+                              <path
+                                d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+                              />
+                            </svg>
+                          </button>
+                          <button class="btn-icon btn-delete" title="Delete">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>User</td>
+                      <td>Customer</td>
+                      <td>
+                        <span class="status-badge status-active">Active</span>
+                      </td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="btn-icon btn-edit" title="Edit">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
+                              />
+                              <path
+                                d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+                              />
+                            </svg>
+                          </button>
+                          <button class="btn-icon btn-delete" title="Delete">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Viewer</td>
+                      <td>Read only</td>
+                      <td>
+                        <span class="status-badge status-inactive"
+                          >Inactive</span
+                        >
+                      </td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="btn-icon btn-edit" title="Edit">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
+                              />
+                              <path
+                                d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+                              />
+                            </svg>
+                          </button>
+                          <button class="btn-icon btn-delete" title="Delete">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Moderator</td>
+                      <td>Manage comments</td>
+                      <td>
+                        <span class="status-badge status-active">Active</span>
+                      </td>
+                      <td>
+                        <div class="table-actions">
+                          <button class="btn-icon btn-edit" title="Edit">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
+                              />
+                              <path
+                                d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+                              />
+                            </svg>
+                          </button>
+                          <button class="btn-icon btn-delete" title="Delete">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                            >
+                              <path
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="pagination-container">
+                <div class="pagination-per-page">
+                  <label for="itemsPerPage1">Items per page:</label>
+                  <select id="itemsPerPage1" class="pagination-select">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+
+                <div class="pagination">
+                  <button
+                    class="pagination-btn first"
+                    disabled
+                    aria-label="First page"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <polyline points="17 18 11 12 17 6"></polyline>
+                      <polyline points="11 18 5 12 11 6"></polyline>
+                    </svg>
+                  </button>
+
+                  <button
+                    class="pagination-btn"
+                    disabled
+                    aria-label="Previous page"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </button>
+
+                  <button class="pagination-btn active" aria-current="page">
+                    1
+                  </button>
+                  <button class="pagination-btn">2</button>
+                  <button class="pagination-btn">3</button>
+
+                  <button class="pagination-btn" aria-label="Next page">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <polyline points="9 6 15 12 9 18"></polyline>
+                    </svg>
+                  </button>
+
+                  <button class="pagination-btn last" aria-label="Last page">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <polyline points="7 18 13 12 7 6"></polyline>
+                      <polyline points="13 18 19 12 13 6"></polyline>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="pagination-info">1-3 of 7</div>
+              </div>
+            </div>
+
+            <div class="management-card">
+              <div class="card-header">
+                <h2 class="card-title">Add Role</h2>
+              </div>
+
+              <div class="form-row">
+                <div class="flex-col">
+                  <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-input"
+                      placeholder="Enter role name"
+                    />
+                  </div>
+
+                  <div class="filter-group">
+                    <label class="filter-label">Type</label>
+                    <div class="checkbox-wrapper">
+                      <input
+                        type="checkbox"
+                        id="status-filter"
+                        class="checkbox-input"
+                      />
+                      <label for="status-filter" class="checkbox-label"
+                        >Active</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Description</label>
+                  <textarea
+                    class="form-input"
+                    placeholder="Enter description"
+                    rows="5"
+                    style="resize: vertical; min-height: 120px"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button class="btn btn-outline btn-sm">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                  Cancel
+                </button>
+                <button class="btn btn-primary btn-sm">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"
+                    />
+                    <path d="M17 21v-8H7v8M7 3v5h8" />
+                  </svg>
+                  Save
+                </button>
+              </div>
+            </div>
+          </main>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container-custom navbar-container">
+        <a href="home.html" class="navbar-logo">
+          <img src="assets/icons/logo.png" alt="Quiz Logo" />
+          <span>Quizzes</span>
+        </a>
+
+        <nav class="navbar-nav">
+          <a href="home.html" class="navbar-link active">Home</a>
+          <a href="quizzes.html" class="navbar-link">Quizzes</a>
+          <a href="quiz-management.html" class="navbar-link" data-auth-required
+            >Management</a
+          >
+          <a href="about.html" class="navbar-link">About</a>
+          <a href="contact.html" class="navbar-link">Contact</a>
+        </nav>
+
+        <div class="navbar-actions">
+          <div class="user-dropdown" data-auth-ui>
+            <button
+              class="user-avatar-btn"
+              id="userAvatarBtn"
+              aria-label="User menu"
+            >
+              <img
+                src="assets/images/teams/team-1.png"
+                alt="User Avatar"
+                class="user-avatar-icon"
+              />
+            </button>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+              <div class="dropdown-header">
+                <p class="dropdown-name">Kien Trung</p>
+              </div>
+              <div class="dropdown-divider"></div>
+
+              <a href="#" class="dropdown-item">Change Password</a>
+              <div class="dropdown-divider"></div>
+              <a href="login.html" class="dropdown-item">Logout</a>
+            </div>
+          </div>
+
+          <div class="auth-buttons" data-guest-ui>
+            <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+            <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+          </div>
+
+          <button
+            class="navbar-mobile-toggle"
+            id="mobileMenuToggle"
+            aria-label="Toggle menu"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu-nav">
+          <a href="home.html" class="mobile-menu-link active">Home</a>
+          <a href="quizzes.html" class="mobile-menu-link">Quizzes</a>
+          <a href="about.html" class="mobile-menu-link">About</a>
+          <a href="contact.html" class="mobile-menu-link">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="container-custom">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <h1 class="hero-title">
+                Welcome to <span class="highlight">Quiz App</span>
+              </h1>
+
+              <p class="hero-description">
+                The leading online quiz platform. Challenge yourself with
+                thousands of diverse questions and track your progress today.
+              </p>
+
+              <div class="hero-cta">
+                <a href="quizzes.html" class="btn btn-primary btn-lg"
+                  >Take a Quiz</a
+                >
+              </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+              <img
+                src="assets/images/hero.png"
+                alt="Quiz illustration"
+                class="hero-image"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz-section">
+        <div class="container-custom">
+          <div class="quiz-header">
+            <h2 class="quiz-title">QUIZZES</h2>
+          </div>
+
+          <div class="quiz-grid">
+            <article class="quiz-card">
+              <img
+                src="assets/images/quizzes/quiz-1.png"
+                alt="Capitals of Country"
+                class="quiz-card-image"
+              />
+
+              <div class="quiz-card-content">
+                <div class="quiz-card-header">
+                  <h3 class="quiz-card-title">Capitals of Country</h3>
+                  <time class="quiz-duration">15m</time>
+                </div>
+
+                <p class="quiz-card-description">
+                  Test your knowledge about world capitals and geography.
+                </p>
+
+                <div class="quiz-card-footer">
+                  <a
+                    href="quizzes.html"
+                    class="btn-card-footer btn-outline-card-footer btn-sm"
+                    >Start</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="quiz-card">
+              <img
+                src="assets/images/quizzes/quiz-2.png"
+                alt="Capitals of Country"
+                class="quiz-card-image"
+              />
+
+              <div class="quiz-card-content">
+                <div class="quiz-card-header">
+                  <h3 class="quiz-card-title">Capitals of Country</h3>
+                  <time class="quiz-duration">15m</time>
+                </div>
+
+                <p class="quiz-card-description">
+                  Test your knowledge about world capitals and geography.
+                </p>
+
+                <div class="quiz-card-footer">
+                  <a
+                    href="quizzes.html"
+                    class="btn-card-footer btn-outline-card-footer btn-sm"
+                    >Start</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article class="quiz-card">
+              <img
+                src="assets/images/quizzes/quiz-3.png"
+                alt="Capitals of Country"
+                class="quiz-card-image"
+              />
+
+              <div class="quiz-card-content">
+                <div class="quiz-card-header">
+                  <h3 class="quiz-card-title">Capitals of Country</h3>
+                  <time class="quiz-duration">15m</time>
+                </div>
+
+                <p class="quiz-card-description">
+                  Test your knowledge about world capitals and geography.
+                </p>
+
+                <div class="quiz-card-footer">
+                  <a
+                    href="quizzes.html"
+                    class="btn-card-footer btn-outline-card-footer btn-sm"
+                    >Start</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container-custom">
+        <div class="footer-content">
+          <div class="footer-about">
+            <a href="home.html" class="about-logo">
+              <img src="assets/icons/logo.png" alt="Quiz Logo" />
+              <span>Quizzes</span>
+            </a>
+            <p>
+              The leading online quiz platform to test your knowledge and learn
+              new things every day.
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Menu</h4>
+            <nav class="footer-links">
+              <a href="home.html" class="footer-link">Home</a>
+              <a href="quizzes.html" class="footer-link">Quizzes</a>
+              <a href="about.html" class="footer-link">About</a>
+              <a href="contact.html" class="footer-link">Contact</a>
+            </nav>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <ul class="contact-details">
+              <li class="contact-detail-item">
+                <svg
+                  class="contact-detail-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+                <a href="mailto:kiennt169@fpt.com">kiennt169@fpt.com</a>
+              </li>
+              <li class="contact-detail-item">
+                <svg
+                  class="contact-detail-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                  />
+                </svg>
+                <a href="tel:+84999888999">+84 999 888 999</a>
+              </li>
+              <li class="contact-detail-item">
+                <svg
+                  class="contact-detail-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                  />
+                </svg>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=123+Khuong+Dinh%2C+Thanh+Xuan%2C+Ha+Noi%2C+Viet+Nam"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >123 Khuong Dinh, Thanh Xuan, Ha Noi, Viet Nam</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2024 Quiz App. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
