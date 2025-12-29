@@ -19,7 +19,7 @@
             <span>Quizzes</span>
           </a>
 
-          <nav class="navbar-nav">
+          <nav class="navbar-nav" aria-label="Main navigation">
             <a href="home.html" class="navbar-link">Home</a>
             <a href="quizzes.html" class="navbar-link">Quizzes</a>
             <a href="user-management.html" class="navbar-link active"
@@ -83,7 +83,7 @@
         </div>
 
         <div class="mobile-menu" id="mobileMenu">
-          <nav class="mobile-menu-nav">
+          <nav class="mobile-menu-nav" aria-label="Mobile navigation">
             <a href="home.html" class="mobile-menu-link">Home</a>
             <a href="quizzes.html" class="mobile-menu-link">Quizzes</a>
             <a href="user-management.html" class="mobile-menu-link active"
@@ -101,13 +101,14 @@
             <span class="sidebar-title">Menu</span>
           </div>
 
-          <nav class="sidebar-nav">
+          <nav class="sidebar-nav" aria-label="Admin menu">
             <a href="quiz-management.html" class="sidebar-link">
               <svg
                 class="sidebar-icon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
@@ -125,6 +126,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
@@ -142,6 +144,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
@@ -159,6 +162,7 @@
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
@@ -181,8 +185,11 @@
 
               <div class="search-filter">
                 <div class="filter-group">
-                  <label class="filter-label">Username</label>
+                  <label for="search-username" class="filter-label"
+                    >Username</label
+                  >
                   <input
+                    id="search-username"
                     type="text"
                     class="filter-input"
                     placeholder="Enter username to search"
@@ -190,7 +197,7 @@
                 </div>
 
                 <div class="filter-group">
-                  <label class="filter-label">Type</label>
+                  <label for="status-filter" class="filter-label">Type</label>
                   <div class="checkbox-wrapper">
                     <input
                       type="checkbox"
@@ -544,8 +551,11 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">First Name</label>
+                  <label for="user-firstname" class="form-label"
+                    >First Name</label
+                  >
                   <input
+                    id="user-firstname"
                     type="text"
                     class="form-input"
                     placeholder="Enter first name"
@@ -553,8 +563,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Last Name</label>
+                  <label for="user-lastname" class="form-label"
+                    >Last Name</label
+                  >
                   <input
+                    id="user-lastname"
                     type="text"
                     class="form-input"
                     placeholder="Enter last name"
@@ -562,8 +575,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Email</label>
+                  <label for="user-email" class="form-label">Email</label>
                   <input
+                    id="user-email"
                     type="email"
                     class="form-input"
                     placeholder="Enter email"
@@ -571,8 +585,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Username</label>
+                  <label for="user-username" class="form-label">Username</label>
                   <input
+                    id="user-username"
                     type="text"
                     class="form-input"
                     placeholder="Enter username"
@@ -580,8 +595,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Password</label>
+                  <label for="user-password" class="form-label">Password</label>
                   <input
+                    id="user-password"
                     type="password"
                     class="form-input"
                     placeholder="Enter password"
@@ -589,8 +605,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Confirm Password</label>
+                  <label for="user-confirm-password" class="form-label"
+                    >Confirm Password</label
+                  >
                   <input
+                    id="user-confirm-password"
                     type="password"
                     class="form-input"
                     placeholder="Confirm password"
@@ -598,8 +617,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Date of Birth</label>
+                  <label for="user-dob" class="form-label">Date of Birth</label>
                   <input
+                    id="user-dob"
                     type="text"
                     class="form-input"
                     placeholder="Enter date of birth"
@@ -607,8 +627,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Phone Number</label>
+                  <label for="user-phone" class="form-label"
+                    >Phone Number</label
+                  >
                   <input
+                    id="user-phone"
                     type="tel"
                     class="form-input"
                     placeholder="Enter phone number"
@@ -616,7 +639,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Type</label>
+                  <label for="user-status" class="form-label">Type</label>
                   <div class="checkbox-wrapper">
                     <input
                       type="checkbox"
