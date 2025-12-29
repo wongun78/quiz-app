@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    window.addEventListener("resize", function () {
-      if (window.innerWidth >= 768) {
+    globalThis.addEventListener("resize", function () {
+      if (globalThis.innerWidth >= 768) {
         mobileMenu.classList.add("hidden");
       }
     });
@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function setActiveNavLink() {
-  const currentPage = window.location.pathname.split("/").pop() || "home.html";
+  const currentPage =
+    globalThis.location.pathname.split("/").pop() || "home.html";
   const navLinks = document.querySelectorAll(".navbar-link, .mobile-menu-link");
 
   navLinks.forEach((link) => {
