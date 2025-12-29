@@ -1,5 +1,29 @@
 const isAuthenticated = true;
 
+/* Shared form helper functions */
+function validateEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function clearFormErrors(form) {
+  form.querySelectorAll(".input-error").forEach((el) => el.remove());
+  form
+    .querySelectorAll(".input-invalid")
+    .forEach((el) => el.classList.remove("input-invalid"));
+  const success = form.querySelector(
+    ".form-success, .contact-success, .auth-success"
+  );
+  if (success) success.remove();
+}
+
+function showError(input, message) {
+  const err = document.createElement("div");
+  err.className = "input-error";
+  err.textContent = message;
+  input.classList.add("input-invalid");
+  input.parentNode.appendChild(err);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const authUI = document.querySelectorAll("[data-auth-ui]");
   const guestUI = document.querySelectorAll("[data-guest-ui]");
@@ -38,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    window.addEventListener("resize", function () {
-      if (window.innerWidth >= 768) {
+    globalThis.addEventListener("resize", function () {
+      if (globalThis.innerWidth >= 768) {
         mobileMenu.classList.remove("active");
       }
     });
@@ -59,29 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
         userDropdownMenu.classList.remove("active");
       }
     });
-  }
-  /* Shared small-form helpers (used by contact, login, register) */
-  function validateEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
-
-  function clearFormErrors(form) {
-    form.querySelectorAll(".input-error").forEach((el) => el.remove());
-    form
-      .querySelectorAll(".input-invalid")
-      .forEach((el) => el.classList.remove("input-invalid"));
-    const success = form.querySelector(
-      ".form-success, .contact-success, .auth-success"
-    );
-    if (success) success.remove();
-  }
-
-  function showError(input, message) {
-    const err = document.createElement("div");
-    err.className = "input-error";
-    err.textContent = message;
-    input.classList.add("input-invalid");
-    input.parentNode.appendChild(err);
   }
 
   const contactForm = document.getElementById("contactForm");
@@ -245,7 +246,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function setActiveNavLink() {
-  const currentPage = window.location.pathname.split("/").pop() || "home.html";
+  const currentPage =
+    globalThis.location.pathname.split("/").pop() || "home.html";
   const navLinks = document.querySelectorAll(".navbar-link, .mobile-menu-link");
 
   navLinks.forEach((link) => {
